@@ -6,4 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectUserById" parameterType="java.lang.Integer" resultType="com.gmtech.po.User">
 		select * from user where id = #{id}
 	</select>
+	
+	<select id="selectUserByName" parameterType="java.lang.String" resultType="com.gmtech.po.User">
+		select * from user where username like '%${value}%'
+	</select>
+	
+	<insert id="insertUser" parameterType="com.gmtech.po.User">
+		insert into user (username,birthday,sex,address) values(#{username},#{birthday},#{sex},#{address})
+	</insert>
 </mapper>
