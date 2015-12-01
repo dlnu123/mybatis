@@ -11,9 +11,11 @@ import com.gmtech.sqlsession.MybatisSessionFactory;
 
 public class Test {
 	public static void main(String[] args) throws Exception {
-		selectUserById();
-		selectUserByName();
+//		selectUserById();
+//		selectUserByName();
 		insertUser();
+//		updateUser();
+//		deleteUser();
 	}
 
 	private static SqlSession getSession() throws Exception {
@@ -34,15 +36,34 @@ public class Test {
 		System.out.println(list);
 		session.close();
 	}
-	
+
 	private static void insertUser() throws Exception {
 		SqlSession session = getSession();
 		User user = new User();
-		user.setUsername("王亮");
+		user.setUsername("testUser");
 		user.setBirthday(new Date());
 		user.setSex("1");
 		user.setAddress("北京市西城区");
 		session.insert("test.insertUser", user);
+		session.commit();
+		System.out.println(user.getId());
+		session.close();
+		System.out.println(user.getId());
+	}
+
+	private static void updateUser() throws Exception {
+		SqlSession session = getSession();
+		User user = new User();
+		user.setId(1);
+		user.setUsername("tttt");
+		session.update("test.updateUser", user);
+		session.commit();
+		session.close();
+	}
+
+	private static void deleteUser() throws Exception {
+		SqlSession session = getSession();
+		session.delete("test.deleteUser", 30);
 		session.commit();
 		session.close();
 	}
