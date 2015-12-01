@@ -22,9 +22,9 @@ public class Test {
 //		deleteUser();
 		
 		//原始dao开发方法
-		UserDao userDao = new UserDaoImpl();
-		User user = userDao.selectUserById(1);
-		System.out.println(user);
+//		UserDao userDao = new UserDaoImpl();
+//		User user = userDao.selectUserById(1);
+//		System.out.println(user);
 		
 //		User user = new User();
 //		user.setUsername("testUser");
@@ -35,6 +35,12 @@ public class Test {
 //		System.out.println(user.getId());
 		
 //		userDao.deleteUser(36);
+		
+		//mapper代理开发dao方法
+		SqlSession session = getSession();
+		UserDao userDao = session.getMapper(UserDao.class);
+		User user = userDao.selectUserById(1);
+		System.out.println(user);
 	}
 
 	private static SqlSession getSession() throws Exception {
