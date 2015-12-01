@@ -6,16 +6,35 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.gmtech.dao.UserDao;
+import com.gmtech.dao.impl.UserDaoImpl;
 import com.gmtech.po.User;
 import com.gmtech.sqlsession.MybatisSessionFactory;
 
 public class Test {
 	public static void main(String[] args) throws Exception {
+		
+		//入门示例
 //		selectUserById();
 //		selectUserByName();
-		insertUser();
+//		insertUser();
 //		updateUser();
 //		deleteUser();
+		
+		//原始dao开发方法
+		UserDao userDao = new UserDaoImpl();
+		User user = userDao.selectUserById(1);
+		System.out.println(user);
+		
+//		User user = new User();
+//		user.setUsername("testUser");
+//		user.setBirthday(new Date());
+//		user.setSex("1");
+//		user.setAddress("北京市西城区");
+//		userDao.insertUser(user);
+//		System.out.println(user.getId());
+		
+//		userDao.deleteUser(36);
 	}
 
 	private static SqlSession getSession() throws Exception {
